@@ -1,10 +1,6 @@
 #ifndef MBBASE_H
 #define MBBASE_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <stdint.h>
 #include <stddef.h>
 
@@ -66,14 +62,14 @@ enum {
 	#define unlikely(expr) (expr)
 #endif
 
+#if !__has_builtin(__builtin_unreachable)
+	#define __builtin_unreachable()
+#endif
+
 #define len(a) (sizeof(a)/sizeof(*(a)))
 #define min(a,b) (((a)<(b))?(a):(b))
 #define max(a,b) (((a)>(b))?(a):(b))
 #define clamp(a,x,b) (((x)<(a))?(a):((x)>(b))?(b):(x))
 
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif /* MBBASE_H */
