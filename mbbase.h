@@ -63,7 +63,11 @@ enum {
 #endif
 
 #if !__has_builtin(__builtin_unreachable)
-	#define __builtin_unreachable()
+	#ifdef _MSC_VER
+		#define __builtin_unreachable() __assume(0)	
+	#else
+		#define __builtin_unreachable()
+	#endif
 #endif
 
 #define len(a) (sizeof(a)/sizeof(*(a)))
