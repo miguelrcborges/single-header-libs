@@ -69,6 +69,15 @@ enum {
 	#endif
 #endif
 
+#if !__has_builtin(__builtin_trap)
+	#if defined(_MSC_VER) || defined(__INTEL_COMPILER)
+		#define __builtin_trap() __debugbreak()
+	#else
+		#define __builtin_trap() (*(int *)0)
+	#endif
+#endif
+		
+
 #define len(a) (sizeof(a)/sizeof(*(a)))
 #define min(a,b) (((a)<(b))?(a):(b))
 #define max(a,b) (((a)>(b))?(a):(b))
