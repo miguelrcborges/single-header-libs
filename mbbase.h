@@ -46,7 +46,7 @@ enum {
 	#define force_inline static __attribute__((always_inline)) inline
 	#define no_inline __attribute__((noinline))
 #elif defined(_MSC_VER)
-	#define force_inline static __forceinline inline
+	#define force_inline static __forceinline
 	#define no_inline __declspec(noinline)
 #else
 	#define force_inline static inline
