@@ -17,8 +17,9 @@ typedef float f32;
 typedef double f64;
 
 typedef size_t usize;
+typedef ptrdiff_t isize;
 typedef uintptr_t uptr;
-typedef ptrdiff_t sptr;
+
 #if !defined(bool) && !defined(__cplusplus) && __STDC_VERSION__ <= 201710L
 typedef u8 bool;
 enum {
@@ -78,7 +79,8 @@ enum {
 #endif
 		
 
-#define len(a) (sizeof(a)/sizeof(*(a)))
+#define size(x) ((isize) sizeof(x))
+#define len(a) (size(a)/size(*(a)))
 #define min(a,b) (((a)<(b))?(a):(b))
 #define max(a,b) (((a)>(b))?(a):(b))
 #define clamp(a,x,b) (((x)<(a))?(a):((x)>(b))?(b):(x))
